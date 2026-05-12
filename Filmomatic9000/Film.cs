@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -9,11 +10,44 @@ namespace Filmomatic9000
 {
     internal class Film : TableConnection
     {
+        private UInt32 _id;
         private string _title;
         private string _description;
+
+        public UInt32 Id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
 
+        public void get()
+        {
+            if (this.Id == null) { return; }
+
+            try
+            {
+                this.connection.Open();
+
+                string query_string = "select id, title, description from films where id = @id limit 1";
+                MySqlCommand command = new MySqlCommand(query_string, this.connection);
+
+                command.Parameters.AddWithValue("@id", this.Id);
+                command.Prepare();
+                MySqlDataReader reader = command.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    this.title = (string)reader["title"];
+                    this.description = (string)reader["description"];
+                }
+            } catch (Exception ex)
+            {
+                throw ex;
+            } finally
+            {
+                this.connection.Close();
+            }
+  
+        }
         public void save()
         {
             try

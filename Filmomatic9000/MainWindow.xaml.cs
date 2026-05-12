@@ -54,6 +54,15 @@ namespace Filmomatic9000
             GetFilms();   
         }
 
+        private void Get_Single_Film_Click(object sender, RoutedEventArgs e)
+        {
+            Film twentiethFilm = new Film();
+            twentiethFilm.Id = 20;
+
+            twentiethFilm.get();
+            FilmSingle.Items.Add($"{twentiethFilm.title}, {twentiethFilm.description}");
+        }
+
         //private void UserQuery_KeyUp(object sender, KeyEventArgs e)
         //{   
         //    GetFilms();
