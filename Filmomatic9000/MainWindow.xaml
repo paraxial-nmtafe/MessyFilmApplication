@@ -20,6 +20,20 @@
         <Button Click="Button_Click" Grid.Row="0" Grid.Column="1">Click me!</Button>
         <ListBox x:Name="FilmSingle" Grid.Row="1"></ListBox>
         <Button Click="Get_Single_Film_Click" Grid.Row="1" Grid.Column="1">Get Film 20</Button>
-        <ListBox x:Name="FilmList" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"></ListBox>
+        <ListBox x:Name="FilmList" Grid.Row="2" Grid.Column="0"></ListBox>
+        <Grid Grid.Row="2" Grid.Column="1"> <!-- Look! It's a grid inside a grid! -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0">Title</Label>
+            <TextBox x:Name="TitleField" Grid.Row="1"></TextBox>
+            <Label Grid.Row="2">Description</Label>
+            <TextBox Grid.Row="3" x:Name="DescriptionField"></TextBox>
+            <Button Grid.Row="4">Save</Button>
+        </Grid>
     </Grid>
 </Window>
